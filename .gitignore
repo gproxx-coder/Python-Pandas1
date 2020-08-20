@@ -1,2 +1,6 @@
 *.ipynb
 *.txt
+ex1_emp_without_dept.xlsx
+ex2A_highest_sal_one_dept.xlsx
+ex2B_avgsal_eachdept.xlsx
+ex3_highest_sal_all_dept.xlsx
