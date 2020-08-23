@@ -3,9 +3,44 @@ import pandas as pd
 import numpy as np
 import openpyxl
 
-#Reading Files using "Pandas.read_excel()" inbuilt function
-df1 = pd.read_excel('emp.xlsx')
-df2 = pd.read_excel('master.xlsx')
+#Reading Emp_Details.txt
+with open("Emp_Details.txt") as textFile1:
+    lines1 = np.array([line.strip().split() for line in textFile1])
+
+titles1 = lines1[0]
+data1 = np.delete(lines1, 0, 0)
+
+
+#Reading Emp_Master.txt
+with open("Emp_Master.txt") as textFile2:
+    lines2 = np.array([line.strip().split() for line in textFile2])
+
+titles2 = lines2[0]
+data2 = np.delete(lines2, 0, 0)
+
+
+#Defining Datatypes as per columns
+convert_dict1 = {'EmpdID': int, 
+                'Name': str,
+                'LOC': str,
+                'Phone': int
+               }
+
+convert_dict2 = {'EmpdID': int, 
+                'Dept': str,
+                'Sal': float
+               }
+
+
+#Converting Numpy array to Pandas Dataframe
+df1 = pd.DataFrame(data1, columns=titles1)
+df2 = pd.DataFrame(data2, columns=titles2)
+
+
+#Chaning datatypes as per Convert_Dict
+df1 = df1.astype(convert_dict1)
+df2 = df2.astype(convert_dict2)
+
 
 #Dropping rows if it contains any NaN (Missing data or blank data)
 df1.dropna(inplace=True)
